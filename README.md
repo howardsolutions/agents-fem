@@ -47,5 +47,36 @@ We use three categories to organize test cases:
 
 3. Negative - Must NOT select forbidden tools. Tests that the agent DOESN'T over-reach.
 
+## Scorers (Evaluators) 
+
+Scorers are functions that take the agent's output and the expected target, returning a score (usually 0-1):
+
+toolsSelected - Binary: did it select ALL expected tools?
+toolsAvoided - Binary: did it avoid ALL forbidden tools?
+toolSelectionScore - F1 score (precision/recall balance) for partial credit
+
+
+## Where You Get Data for Evals 
+
+Synthetic data - Write examples yourself based on expected use cases (what we're doing)
+
+Production logs - Sample real user interactions (best for online evals)
+
+Edge case mining - Find failure cases in production and add to test suite
+
+Red teaming - Intentionally try to break the agent and capture those cases
+
+LLM-generated - Use another LLM to generate test cases (be careful of bias)
+
+## Hill Climbing with Evals 
+
+Evals enable hill climbing - iteratively improving your agent:
+
+Run evals, get baseline scores
+Make a change (prompt, model, tools, etc.)
+Run evals again
+If scores improved, keep the change. If not, revert.
+Repeat
+This is how you systematically improve agents without relying on vibes. Every change is justified by data.
 
 </details>
