@@ -1,14 +1,10 @@
 import type {
-  EvalData,
-  SingleTurnResult,
-  MultiTurnEvalData,
-  MultiTurnResult,
+  EvalData
 } from "./types.ts";
 
-import { generateText, stepCountIs, tool, type ToolSet } from "ai"
-import { openai } from "@ai-sdk/openai"
+import { openai } from "@ai-sdk/openai";
+import { generateText, stepCountIs, tool, type ToolSet } from "ai";
 import { z } from "zod";
-import { readFile } from "fs";
 import { buildMessages } from "./utils.ts";
 
 const TOOL_DEFINITIONS: Record<
